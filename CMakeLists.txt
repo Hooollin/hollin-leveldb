@@ -28,11 +28,14 @@ include_directories(
 add_library(leveldb "") 
 target_sources(leveldb
   PRIVATE
+  "util/arena.cc"
+  "util/arena.h"
   "util/cache.cc"
   "util/coding.cc"
   "util/coding.h"
   "util/hash.cc"
   "util/hash.h"
+  "util/random.h"
 
   PUBLIC
   "${PROJECT_SOURCE_DIR}/include/leveldb/cache.h"
@@ -49,3 +52,13 @@ add_executable(cache_test
 )
 
 target_link_libraries(cache_test leveldb gmock gtest gtest_main)
+
+add_executable(arena_test
+ "${PROJECT_SOURCE_DIR}/util/arena_test.cc"
+)
+
+target_link_libraries(arena_test leveldb gmock gtest gtest_main)
+
+
+
+
