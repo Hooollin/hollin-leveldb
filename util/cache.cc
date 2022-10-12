@@ -197,6 +197,7 @@ LRUCache::~LRUCache() {
   for (LRUHandle* e = lru_.next; e != &lru_;) {
     LRUHandle* next = e->next;
     assert(e->in_cache);
+    e->in_cache = false;
     assert(e->refs == 1);
     Unref(e);
     e = next;
@@ -384,5 +385,3 @@ class ShardedLRUCache : public Cache {
 Cache* NewLRUCache(size_t capacity) { return new ShardedLRUCache(capacity); }
 
 }  // namespace leveldb
-
-int main() { return 0; }

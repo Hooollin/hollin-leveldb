@@ -18,6 +18,8 @@ if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_EXTENSIONS OFF)
 endif(NOT CMAKE_CXX_STANDARD)
 
+add_subdirectory("third_party/googletest")
+
 include_directories(
   "${PROJECT_BINARY_DIR}/include"
   "."
@@ -43,7 +45,7 @@ target_include_directories(leveldb
 )
 
 add_executable(cache_test 
- "${PROJECT_SOURCE_DIR}/util/cache.cc"
+ "${PROJECT_SOURCE_DIR}/util/cache_test.cc"
 )
 
-target_link_libraries(cache_test leveldb)
+target_link_libraries(cache_test leveldb gmock gtest gtest_main)
