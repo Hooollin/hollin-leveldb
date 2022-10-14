@@ -36,10 +36,13 @@ target_sources(leveldb
   "util/hash.cc"
   "util/hash.h"
   "util/random.h"
+  "util/status.cc"
 
   PUBLIC
   "${PROJECT_SOURCE_DIR}/include/leveldb/cache.h"
   "${PROJECT_SOURCE_DIR}/include/leveldb/slice.h"
+  "${PROJECT_SOURCE_DIR}/include/leveldb/status.h"
+  "${PROJECT_SOURCE_DIR}/include/leveldb/iterator.h"
 )
 
 target_include_directories(leveldb
@@ -50,14 +53,19 @@ target_include_directories(leveldb
 add_executable(cache_test 
  "${PROJECT_SOURCE_DIR}/util/cache_test.cc"
 )
-
 target_link_libraries(cache_test leveldb gmock gtest gtest_main)
 
 add_executable(arena_test
  "${PROJECT_SOURCE_DIR}/util/arena_test.cc"
 )
-
 target_link_libraries(arena_test leveldb gmock gtest gtest_main)
+
+add_executable(status_test
+ "${PROJECT_SOURCE_DIR}/util/status_test.cc"
+)
+target_link_libraries(status_test leveldb gmock gtest gtest_main)
+
+
 
 
 
